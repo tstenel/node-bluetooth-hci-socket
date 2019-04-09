@@ -272,9 +272,8 @@ void BluetoothHciSocket::emitErrnoError() {
   Local<Value> constructorArgs[1] = {
     Nan::New(strerror(errno)).ToLocalChecked()
   };
-
-  Local<Value> error = errorConstructor->NewInstance(1, constructorArgs);
-
+  
+  Local<Value> error = Nan::NewInstance(errorConstructor, 1, constructorArgs).ToLocalChecked();
   Local<Value> argv[2] = {
     Nan::New("error").ToLocalChecked(),
     error
